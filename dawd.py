@@ -13,5 +13,6 @@ def hbd(age):
     return "No suitable base found."
 
 
+print("FUCK YOUR MAMA")
 year = input("Enter year: ")
 print(hbd(int(year)))
