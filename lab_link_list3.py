@@ -23,8 +23,8 @@ class Linked_List:
             t = self.head  # set t at the front of the list
             while t.next != None:  # if == None == you reach the end of the list
                 t = t.next  # next if still not the end
-            t.next = p
-            self.size += 1
+            t.next = p #append at the back
+            self.size += 1 #increase size
         pass
 
     def add_head(self, data):

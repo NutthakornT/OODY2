@@ -15,6 +15,6 @@ def hbd(age):
 
 print("Yeah buddyyyyyyyyyyyyyyyyyyyyyyyy")
 print("FUCK YOUR MAMA")
+print("Adolf Hitler")
 year = input("Enter year: ")
 print(hbd(int(year)))
-print("Adolf Hitler")
