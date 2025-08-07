@@ -236,7 +236,7 @@ for i in cmd:
         print("Ant nest has fallen!")
         break
 
-    if i[:1] == "W":
+    if i[:1] == "W": # add Worker 
         amount = int(i[2])
         
         for i in range(amount): 
@@ -244,7 +244,7 @@ for i in cmd:
                 s = ""
                 s = "W" + str(i+1)
                 link_lst.append(s)
-            elif link_lst.head.data[:1]== "A":
+            elif link_lst.head.data[:1]== "A": # add Worker behind Army ant
                 if link_lst.is_there_a_worker_not_print() == False:
                     s = ""
                     s = "W" + str(i+1)
@@ -262,13 +262,13 @@ for i in cmd:
             else:
                 ind = link_lst.find_index_last_worker() #1
                 s = ""
-                s += "W" + str(ind+2)
+                s += "W" + str(ind+2) # W1 W2 return index = 1, want W3 so +2 
                 link_lst.insertAfter(ind,s)
 
         # print("Insert W :")
         # link_lst.print_list()   
         pass
-    elif i[:1] == "A":
+    elif i[:1] == "A": # add army ant
         amount_a = int(i[2])
         
         for i in range(amount_a):
@@ -289,7 +289,7 @@ for i in cmd:
         #     ind = link_lst
         pass
     elif i[:1] == "C":
-        carry_mission = Linked_List()
+        carry_mission = Linked_List() # keep how many go to work
         item_left = int(i[2:])
         # print(item_left) #5
         p = link_lst.head
@@ -329,7 +329,7 @@ for i in cmd:
             break
         pass
     elif i[:1] == "F":
-        attack_mission = Linked_List()
+        attack_mission = Linked_List() # keep how many go to work
         hp_left = int(i[2:])
         # print(hp_left)          
         q = link_lst.head

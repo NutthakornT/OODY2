@@ -97,21 +97,21 @@ for weight in weight_1:
     po = Stack()
     pu = Stack()
 
-    # Make mutable copies
+   
     old = current_stack.item.copy()
     new = new_stack.item.copy()
 
-    # Work from OUTERMOST → INWARD
+   
     while old and new and old[0] == new[0]:
-        # Both stacks match at top → skip
+        # both stacks match at top = skip
         old.pop(0)
         new.pop(0)
 
-    # Now we reached mismatch point → must remove ALL remaining old plates
+    #remove all old plates if there left
     while old:
         po.push(old.pop(0))  # remove in order (outermost first)
 
-    # After clearing, we now need to add remaining new plates
+    #add remaining new plates
     while new:
         pu.push(new.pop(0))  # add in order (outermost first)
     # pu = Stack()
