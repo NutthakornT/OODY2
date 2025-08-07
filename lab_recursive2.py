@@ -5,8 +5,8 @@ def lucky_number(num,counter = 1):
         print(f"Lucky Number: {sum}")
     else:
         print(f"Sum #{counter} : {sum}")
-        counter += 1
-        return lucky_number(sum,counter)
+        
+        return lucky_number(sum,counter+1)
         pass
         
 
