@@ -17,8 +17,11 @@ class BST:
         return self.root
 
     def add(root, data):
+        # print("Hi")
         # print(f"root-->{root}")
-        lst = []
+        # global lst
+        # lst = []
+        # lst.append(data)
         if root is None:
             return Node(data)
         else:
@@ -26,8 +29,9 @@ class BST:
 
                 root.left = BST.add(root.left, data)
                 # print(f"left->{data}")
-            else:
+            elif data > root.data:
                 root.right = BST.add(root.right, data)
+
                 # print(f"right->{data}")
 
         # Code Here
@@ -43,45 +47,39 @@ class BST:
             self.printTree(node.left, level + 1)
 
 
-def in_order(node, lst):
+def find_sum(node):
+    if node is None:
+        return 0
+    return node.data + find_sum(node.left) + find_sum(node.right)
+
+
+def update_tree(node, num):
     if node:
-        in_order(node.left, lst)
-        lst.append(node.data)
-        in_order(node.right, lst)
-
-
-def find_path_sum(root, target):
-    path_all = []
-    current_path = []
-
-    def ods(node):
-        if node is None:
-            return
-        current_path.append(node.data)
-        # print(current_path)
-
-        if not node.left and not node.right:
-            path_all.append(current_path.copy())  # then pop for the righty path
-
-        else:
-            ods(node.left)
-            ############### pop
-            ods(node.right)
-
-        current_path.pop()  # to seach for another right path (backtrack)
-        # print("Hi")
-
-    ods(root)  # call
-    return path_all
+        if node.data > num:
+            node.data *= num
+        update_tree(node.left, num)
+        update_tree(node.right, num)
 
 
 T = BST()
-
-inp, target = input("Enter input : ").split("/")
+print("**Sum of tree**")
+inp, num_khun = input("Enter input : ").split("/")
 inp = list(map(int, inp.split(" ")))
 # print(inp)
-target = int(target)
-print(inp)
-print(target)
+num_khun = int(num_khun)
+# print(inp)
+# print(target)
 for i in inp:
     root = T.insert(i)  # return from insert()
+print("Tree before:")
+T.printTree(root)
+
+sum_sum = find_sum(root)
+print(f"Sum of all nodes = {sum_sum}")
+print()
+update_tree(root, num_khun)
+print("Tree after:")
+T.printTree(root)
+sum_sum_after = find_sum(root)
+print(f"Sum of all nodes = {sum_sum_after}")
+# print(lst)

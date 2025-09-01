@@ -72,6 +72,7 @@ def find_path_sum(root, target):
         # print("Hi")
 
     ods(root)  # call
+    # print(path_all)
     return path_all
 
 
