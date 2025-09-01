@@ -134,7 +134,6 @@ while swap == 1:
             print(f"Swapping {current.data} and {current.next.data} ")
             temp = current.next
             current.next = temp.next
-
             temp.next = current
             if prev:
                 prev.next = temp
@@ -144,21 +143,6 @@ while swap == 1:
             prev = temp
             print(f"List: {link_list}")
             count += 1
-            # if prev:
-            #     temp = current.next
-            #     current.next = temp.next
-            #     temp.next = current
-            #     prev.next = temp
-            #     prev = temp
-            #     pass
-            # else:
-            #     temp = current.next
-            #     current.next = temp.next
-            #     temp.next = current
-            #     link_list.head = temp
-            #     prev = temp
-            #     pass
-            # print(link_list)
 
         else:
             prev = current
@@ -167,3 +151,19 @@ while swap == 1:
 
 print("_______________________________________")
 print(f"Sorted List: {link_list}")
+
+# if prev:
+#     temp = current.next
+#     current.next = temp.next
+#     temp.next = current
+#     prev.next = temp
+#     prev = temp
+#     pass
+# else:
+#     temp = current.next
+#     current.next = temp.next
+#     temp.next = current
+#     link_list.head = temp
+#     prev = temp
+#     pass
+# print(link_list)

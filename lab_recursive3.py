@@ -1,10 +1,10 @@
 def encode_char(char, rotor_position):
     # coding here
     if (ord(char) >= 65 and ord(char) <= 90) or (ord(char) >= 97 and ord(char) <= 122):
-        
-        if ord(char) >= ord('A') and ord(char) <= ord('Z'):
+
+        if ord(char) >= ord("A") and ord(char) <= ord("Z"):
             base = ord("A")
-        elif ord(char) >= ord('a') and ord(char) <= ord('z'):
+        elif ord(char) >= ord("a") and ord(char) <= ord("z"):
             base = ord("a")
 
         shift = rotor_position % 26
@@ -21,8 +21,8 @@ def encode_char(char, rotor_position):
 
 def decode_char(char, rotor_position):
     if (ord(char) >= 65 and ord(char) <= 90) or (ord(char) >= 97 and ord(char) <= 122):
-        
-        if ord(char) >= ord('A') and ord(char) <= ord('Z'):
+
+        if ord(char) >= ord("A") and ord(char) <= ord("Z"):
             base = ord("A")
         else:
             base = ord("a")
@@ -44,8 +44,10 @@ def decode_char(char, rotor_position):
 def encode_message(message, rotor_position, index=0):
     if index >= len(message):
         return ""
-    if (rotor_position+index) % 26 == 0: #############################################
-        rotor_position+=1
+    if (
+        rotor_position + index
+    ) % 26 == 0:  #############################################
+        rotor_position += 1
     return encode_char(message[index], rotor_position + index) + encode_message(
         message, rotor_position, index + 1
     )
@@ -58,8 +60,10 @@ def decode_message(encoded_message, rotor_position, index=0):
     # coding here
     if index >= len(encoded_message):
         return ""
-    if (rotor_position+index) % 26 == 0: #############################################
-        rotor_position+=1
+    if (
+        rotor_position + index
+    ) % 26 == 0:  #############################################
+        rotor_position += 1
     return decode_char(encoded_message[index], rotor_position + index) + decode_message(
         encoded_message, rotor_position, index + 1
     )
