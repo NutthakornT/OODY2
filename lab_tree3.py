@@ -71,6 +71,7 @@ num_khun = int(num_khun)
 # print(target)
 for i in inp:
     root = T.insert(i)  # return from insert()
+print()
 print("Tree before:")
 T.printTree(root)
 
