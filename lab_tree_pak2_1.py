@@ -2,7 +2,7 @@ class AVLTree:
 
     class AVLNode:
 
-        def __init__(self, data, left = None, right = None):
+        def __init__(self, data, left=None, right=None):
 
             self.data = data
 
@@ -12,79 +12,141 @@ class AVLTree:
 
             self.height = self.setHeight()
 
-        
-
         def __str__(self):
 
             return str(self.data)
 
-        
-
         def setHeight(self):
 
-                a = self.getHeight(self.left)
+            a = self.getHeight(self.left)
 
-                b = self.getHeight(self.right)
+            b = self.getHeight(self.right)
 
-                self.height = 1 + max(a,b)
+            self.height = 1 + max(a, b)
 
-                return self.height
-
-            
+            return self.height
 
         def getHeight(self, node):
 
             return -1 if node == None else node.height
 
-            
-
-        def balanceValue(self):      
+        def balanceValue(self):
 
             return self.getHeight(self.right) - self.getHeight(self.left)
 
-    
-
-    def __init__(self, root = None):
+    def __init__(self, root=None):
 
         self.root = None if root is None else root
 
-    
-
     def add(self, data):
-
+        self.root = AVLTree._add(self.root, data)
+        return self.root
         # code here
-
- 
 
     def _add(root, data):
+        if root is None:
+            return AVLTree.AVLNode(data)
 
+        if data < root.data:
+            root.left = AVLTree._add(root.left, data)
+        # elif data > root.data:
+        #     root.right = AVLTree._add(root.right, data)
+        # else:
+        #     return root
+        else:
+            root.right = AVLTree._add(root.right, data)
+
+        root.setHeight()
+        balance_facto = root.balanceValue()
+
+        # left heavy
+        if balance_facto < -1:
+            if data < root.left.data:
+                return AVLTree.rotateRightChild(root)
+            else:
+                if root.left is not None:
+                    root.left = AVLTree.rotateLeftChild(root.left)
+                return AVLTree.rotateRightChild(root)
+            pass
+        # right heavy
+        if balance_facto > 1:
+            if data > root.right.data:
+                return AVLTree.rotateLeftChild(root)
+            else:
+                if root.right is not None:
+                    root.right = AVLTree.rotateRightChild(root.right)
+                return AVLTree.rotateLeftChild(root)
+            pass
+        return root
         # code here
 
+    def rotateLeftChild(root):
+        if root is None or root.right is None:
+            return root
+        y = root.right
+        T2 = y.left
 
+        y.left = root
+        root.right = T2
 
-    def rotateLeftChild(root) :
+        root.setHeight()
+        y.setHeight()
+        # before:
+        #  root
+        #    \
+        #     y
+        #    / \
+        #  T2   R
+        # after:
+        #     y
+        #    / \
+        # root   R
+        #    \
+        #     T2
+        return y
+        pass
+        # code here
 
-         # code here
+    def rotateRightChild(root):
+        if root is None or root.left is None:
+            return root
+        y = root.left
+        T3 = y.right
 
+        y.right = root
+        root.left = T3
 
-
-    def rotateRightChild(root) :
-
-          # code here  
-
-
+        root.setHeight()
+        y.setHeight()
+        # before:
+        #    root
+        #    /
+        #   y
+        #  / \
+        # L   T3
+        # after:
+        #     y
+        #    / \
+        #   L   root
+        #        /
+        #      T3
+        return y
+        pass
+        # code here
 
     def postOrder(self):
+        AVLTree._postOrder(self.root)
+        pass
+        # code here
 
-         # code here
+    def _postOrder(root):
+        if root:
+            AVLTree._postOrder(root.left)
+            AVLTree._postOrder(root.right)
+            print(root.data, end=" ")
 
-
-
-   def _postOrder(root):
-
-         # code here
-
-
+        pass
+        # code here
 
     def printTree(self):
 
@@ -92,35 +154,32 @@ class AVLTree:
 
         print()
 
-    
-
-    def _printTree(node , level=0):
+    def _printTree(node, level=0):
 
         if not node is None:
 
             AVLTree._printTree(node.right, level + 1)
 
-            print('     ' * level, node.data)
+            print("     " * level, node.data)
 
             AVLTree._printTree(node.left, level + 1)
 
- 
 
 avl1 = AVLTree()
 
-inp = input('Enter Input : ').split(',')
+inp = input("Enter Input : ").split(",")
 
 for i in inp:
 
     if i[:2] == "AD":
 
-        avl1.add(i[3:])
+        avl1.add(int(i[3:]))
 
     elif i[:2] == "PR":
 
         avl1.printTree()
 
     elif i[:2] == "PO":
-
-
+        print("AVLTree post-order : ", end="")
         avl1.postOrder()
+        print()
