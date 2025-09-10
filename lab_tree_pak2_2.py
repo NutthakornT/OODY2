@@ -160,7 +160,7 @@ class AVLTree:
 
             AVLTree._printTree(node.right, level + 1)
 
-            print("    " * level + str(node.data))
+            print("    " * level + str(node.data)) #for no space line in the front
 
             AVLTree._printTree(node.left, level + 1)
 

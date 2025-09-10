@@ -202,22 +202,3 @@ def check_same_tree(Tree1, Tree2):  # its a Node
 
 
 avl1 = AVLTree()
-
-inp = input("Enter tree nodes: ").split(" ")
-
-for i in inp:
-    root = avl1.add(int(i))
-    
-
-avl1.printTree()
-path_all = avl1.find_path(root)
-# print(path_all)
-dic = {sum(item):item for item in path_all}
-# print(dic)
-
-max = max(dic.keys())
-max_value = dic[max]
-# print(max_value)
-print("Path with maximum sum: ",end="")
-print(" + ".join(map(str,max_value)),end="")
-print(f" = {max}")
