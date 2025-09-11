@@ -71,14 +71,14 @@ link_lst.print_list()
 if k > link_lst.size:
     k = link_lst.size + 1  # force k to be the size of link_lst
 if k != 0:
-    for i in range(0, link_lst.size, k * 2):
+    for i in range(0, link_lst.size, k * 2): #skip เป็นช่วงๆ
         # print(f"i ---> {i}")
         # print(f"k ---> {k}")
-        if k > link_lst.size - i + 1:
+        if k > link_lst.size - i + 1: #limit k size
             k = link_lst.size - i + 1
             # print(k)
 
-        for j in range(k - 1, -1, -1):
+        for j in range(k - 1, -1, -1): #swap
             prev = None
             head = link_lst.peek(i)
             # print(f"head = {head}")

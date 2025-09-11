@@ -12,7 +12,7 @@ def lucky_number(num,counter = 1):
 
     pass
 
-def summing(num,carry = 0):
+def summing(num,carry = 0): #sum each digit
     if num < 10:
         return num + carry
         pass

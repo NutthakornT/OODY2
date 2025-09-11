@@ -37,7 +37,7 @@ for name in names:
 # print(player.item)
 while player.size > 1:
     print(f"{player.peek()} is the first player holding the potato")
-    for _ in range(int(num_kill)):
+    for _ in range(int(num_kill)): #loop till the num_kill
         player.enqueue(player.peek())
         player.dequeue()
         print(f"  Potato passed to: {player.peek()}")

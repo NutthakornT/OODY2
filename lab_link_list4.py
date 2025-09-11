@@ -275,7 +275,7 @@ for i in cmd:
             if link_lst.isEmpty():
                 s = ""
                 s = "A" + str(i+1)
-                link_lst.append(s)
+                link_lst.append(s) #at the back
             else:
                 ind_a = link_lst.find_index_last_army()
                 s_a = ""
@@ -288,7 +288,7 @@ for i in cmd:
         # for i in range(amount):
         #     ind = link_lst
         pass
-    elif i[:1] == "C":
+    elif i[:1] == "C": #carry
         carry_mission = Linked_List() # keep how many go to work
         item_left = int(i[2:])
         # print(item_left) #5
@@ -335,13 +335,13 @@ for i in cmd:
         q = link_lst.head
         while not link_lst.isEmpty() and  q != None:
             if q.data[:1] == "W":
-                hp_left -= 5
+                hp_left -= 5 #worker
                 attack_mission.append(q.data)
                 link_lst.remove_head()
                 if hp_left < 0:
                     hp_left = 0
             elif q.data[:1] == "A":
-                hp_left -= 10
+                hp_left -= 10 #army
                 attack_mission.append(q.data)
                 link_lst.remove_head()
                 if hp_left < 0:

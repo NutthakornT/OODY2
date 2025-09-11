@@ -1,204 +1,99 @@
-class AVLTree:
-
-    class AVLNode:
-
-        def __init__(self, data, left=None, right=None):
-
+#normal insert not balsnce code
+class BST:
+    class Node:
+        def __init__(self, data):
             self.data = data
+            self.left = None
+            self.right = None
+            self.h = self.update_height()
 
-            self.left = None if left is None else left
-
-            self.right = None if right is None else right
-
-            self.height = self.setHeight()
-
-        def __str__(self):
-
-            return str(self.data)
-
-        def setHeight(self):
-
+        def update_height(self): #get height
             a = self.getHeight(self.left)
-
             b = self.getHeight(self.right)
-
-            self.height = 1 + max(a, b)
-
-            return self.height
-
+            self.h = 1 + max(a,b)
+            return self.h
+            pass
+        
         def getHeight(self, node):
 
-            return -1 if node == None else node.height
-
-        def balanceValue(self):
-
+            return -1 if node == None else node.h
+        def balance_factor(self):
             return self.getHeight(self.right) - self.getHeight(self.left)
-
-    def __init__(self, root=None):
-
-        self.root = None if root is None else root
-
-    def add(self, data):
-        self.root = AVLTree._add(self.root, data)
-        return self.root
-        # code here
-
-    def _add(root, data):
-        if root is None:
-            return AVLTree.AVLNode(data)
-
-        if data < root.data:
-            root.left = AVLTree._add(root.left, data)
-        # elif data > root.data:
-        #     root.right = AVLTree._add(root.right, data)
-        # else:
-        #     return root
-        else:
-            root.right = AVLTree._add(root.right, data)
-
-        root.setHeight()
-        balance_facto = root.balanceValue()
-
-        # left heavy
-        if balance_facto < -1:
-            if data < root.left.data:
-                return AVLTree.rotateRightChild(root)
-            else:
-                if root.left is not None:
-                    root.left = AVLTree.rotateLeftChild(root.left)
-                return AVLTree.rotateRightChild(root)
             pass
-        # right heavy
-        if balance_facto > 1:
-            if data > root.right.data:
-                return AVLTree.rotateLeftChild(root)
-            else:
-                if root.right is not None:
-                    root.right = AVLTree.rotateRightChild(root.right)
-                return AVLTree.rotateLeftChild(root)
-            pass
-        return root
-        # code here
-
-    def rotateLeftChild(root):
-        if root is None or root.right is None:
-            return root
-        y = root.right
-        T2 = y.left
-
-        y.left = root
-        root.right = T2
-
-        root.setHeight()
-        y.setHeight()
-        # before:
-        #  root
-        #    \
-        #     y
-        #    / \
-        #  T2   R
-        # after:
-        #     y
-        #    / \
-        # root   R
-        #    \
-        #     T2
-        return y
-        pass
-        # code here
-
-    def rotateRightChild(root):
-        if root is None or root.left is None:
-            return root
-        y = root.left
-        T3 = y.right
-
-        y.right = root
-        root.left = T3
-
-        root.setHeight()
-        y.setHeight()
-        # before:
-        #    root
-        #    /
-        #   y
-        #  / \
-        # L   T3
-        # after:
-        #     y
-        #    / \
-        #   L   root
-        #        /
-        #      T3
-        return y
-        pass
-        # code here
-
-    def postOrder(self):
-        AVLTree._postOrder(self.root)
-        pass
-        # code here
-
-    def _postOrder(root):
-        if root:
-            AVLTree._postOrder(root.left)
-            AVLTree._postOrder(root.right)
-            print(root.data, end=" ")
-
-        pass
-        # code here
-
-    def printTree(self):
-
-        AVLTree._printTree(self.root)
-
-        print()
-
-    def _printTree(node, level=0):
-
-        if not node is None:
-
-            AVLTree._printTree(node.right, level + 1)
-
-            print("     " * level,node.data)
-
-            AVLTree._printTree(node.left, level + 1)
+        
+    def __init__(self):
+        self.root = None
     
-    def find_path(self,root=None):
-        if root is None:
-            root = self.root
-        path_all = []
-        current_path = []
-        def dfs(node):
-            if node is None:
-                return
-            
-            current_path.append(node.data)
-            if node.left is None and node.right is None:
-                path_all.append(current_path.copy())
+    def insert(self,key):
+        if not self.root:
+            self.root = BST.Node(key)
+        else:
+            BST._insert(self.root,key)
+
+    def _insert(node,key):
+        if key < node.data:
+            if node.left:
+                BST._insert(node.left,key)
             else:
-                dfs(node.left)
-                dfs(node.right)
-            current_path.pop()
-            pass
-        dfs(root)
-        return path_all
-        pass
+                node.left = BST.Node(key)
+        else:
+            if node.right:
+                BST._insert(node.right,key)
+            else:
+                node.right = BST.Node(key)
+        node.update_height() #update height every time
+   
 
+    def _get_format(root,ans = ""):
+        if root:
+            temp = ""
+            if root.right:
+                temp += BST._get_format(root.right,ans + "     ")
+            temp += f"{ans}{root.data}\n"
+            if root.left:
+                temp += BST._get_format(root.left,ans + "     ")
+            return temp
+        return ""
+    
+    def __str__(self):
+        return BST._get_format(self.root)
 
-def check_same_tree(Tree1, Tree2):  # its a Node
-    if Tree2 is None and Tree1 is None:
-        return True
-    if Tree1 is not None and Tree2 is not None:
-        return (
-            Tree1.data == Tree2.data
-            and check_same_tree(Tree1.left, Tree2.left)
-            and check_same_tree(Tree1.right, Tree2.right)
-        )
-    return False
+################################
+'''
+⠀⠀⢘⣾⣾⣿⣾⣽⣯⣼⣿⣿⣴⣽⣿⣽⣭⣿⣿⣿⣿⣿⣧
+⠀⠀⠀⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⠀⠀⠠⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⠀⠀⣰⣯⣾⣿⣿⡼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿
+⠀⠀⠛⠛⠋⠁⣠⡼⡙⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠁
+⠀⠀⠀⠤⣶⣾⣿⣿⣿⣦⡈⠉⠉⠉⠙⠻⣿⣿⣿⣿⣿⠿⠁⠀
+⠀⠀⠀⠀⠈⠟⠻⢛⣿⣿⣿⣷⣶⣦⣄⠀⠸⣿⣿⣿⠗⠀⠀⠀
+⠀⠀⠀⠀⠀⣼⠀⠄⣿⡿⠋⣉⠈⠙⢿⣿⣦⣿⠏⡠⠂⠀⠀⠀
+⠀⠀⠀⠀⢰⡌⠀⢠⠏⠇⢸⡇⠐⠀⡄⣿⣿⣃⠈⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠈⣻⣿⢫⢻⡆⡀⠁⠀⢈⣾⣿⠏⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⢀⣿⣻⣷⣾⣿⣿⣷⢾⣽⢭⣍⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⣼⣿⣿⣿⣿⡿⠈⣹⣾⣿⡞⠐⠁⠀⠀⠀⠁⠀⠀⠀
+⠀⠀⠀⠨⣟⣿⢟⣯⣶⣿⣆⣘⣿⡟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⡆⠀⠐⠶⠮⡹⣸⡟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+'''
 
+def isAVL(node : BST.Node):
+    if node is None:
+        return True 
+    if node.balance_factor() < -1 or node.balance_factor() > 1:
+        return False
+    return isAVL(node.left) and isAVL(node.right)
     pass
 
 
+################################
 
-avl1 = AVLTree()
+
+tree = BST()
+
+print("**********IsAVL**********")
+for i in list(map(int, input("Enter numbers to insert in the tree: ").split())):
+    root = tree.insert(i)
+print("Tree:")
+print(tree)
+print("Is AVL???:", isAVL(tree.root))
+# print(tree.root.balance_factor())

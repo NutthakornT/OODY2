@@ -59,7 +59,7 @@ def find_path(root, treasure, escape):
         if node.data == treasure:
             print("Found Treasure !!!")
             check = 1  # find treasure first then exit
-        if node.data == escape and check == 1:
+        if node.data == escape and check == 1: #if that node is escape
             print("Found Escape !!!")
             print("✅ ", end="")
             print(" -> ".join(map(str, current_path)))
@@ -67,7 +67,7 @@ def find_path(root, treasure, escape):
             return 0
         else:
             print("❌ ", end="")
-            print(" -> ".join(map(str, current_path)))
+            print(" -> ".join(map(str, current_path))) #run through every node
         # if current_path[-1] == treasure:
         #     print("Found Treasure !!!")
         # if current_path[-1] == escape:

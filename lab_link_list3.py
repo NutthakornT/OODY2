@@ -133,7 +133,7 @@ print("Process")
 # for i in range(link_list.size + 1, -1, -1):
 #     print(i)
 
-for x in range(link_list.size, -1, -1):
+for x in range(link_list.size, -1, -1):#swap ลดครั้งในตัวถัดๆไป
     prev = None
     current = link_list.head
     for j in range(x):

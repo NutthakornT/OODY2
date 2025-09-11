@@ -99,7 +99,7 @@ for cond in conditions:
     i = 0
     while i < len(T.sum_till_leaf_list):
         path = T.sum_till_leaf_list[i]
-        total = find_sum_list(path)
+        total = find_sum_list(path) #sum of a path
 
         remove = False
         if condition == "L" and total < value:
@@ -114,7 +114,7 @@ for cond in conditions:
             T.delete_leaf(path[-1])  # leaf of that path
             i = 0  # restart
         else:
-            i += 1  # no need remove = next path
+            i += 1  # no need remove = skip next path
 
     print("--------------------------------------------------")
     if condition == "L":
