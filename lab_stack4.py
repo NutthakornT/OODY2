@@ -54,7 +54,7 @@ for i in range(len(num)):  # i = 0 1 2 3...
     # found the number that is more than
     # top_stack = [0, 1, 2, 3, 4, 5]
     # i = 6
-    while not top_stack.isEmpty and num[top_stack.peek] < num[i]:
+    while not top_stack.isEmpty and num[top_stack.peek] < num[i]: #top stack > input
         print(
             f"input[{i}]({num[i]}) is greater than input[top of stack]({num[top_stack.peek]})"
         )
