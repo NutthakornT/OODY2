@@ -3,41 +3,37 @@ class AVLTree:
     class AVLNode:
 
         def __init__(self, data, left=None, right=None):
-
             self.data = data
-
             self.left = None if left is None else left
-
             self.right = None if right is None else right
-
             self.height = self.setHeight()
+            pass
+            
 
         def __str__(self):
-
             return str(self.data)
+            pass
 
         def setHeight(self):
-
             a = self.getHeight(self.left)
-
             b = self.getHeight(self.right)
-
-            self.height = 1 + max(a, b)
-
+            self.height = 1 + max(a,b)
             return self.height
+            pass
 
         def getHeight(self, node):
+            return -1 if node is None else node.height
+            pass
             
-            return -1 if node == None else node.height
-
         def balanceValue(self):
-
             return self.getHeight(self.right) - self.getHeight(self.left)
+            pass
+            
 
     def __init__(self, root=None):
-
         self.root = None if root is None else root
-
+        pass
+        
     def add(self, data):
         self.root = AVLTree._add(self.root, data)
         return self.root
@@ -67,69 +63,32 @@ class AVLTree:
                 if root.left is not None:
                     root.left = AVLTree.rotateLeftChild(root.left)
                 return AVLTree.rotateRightChild(root)
-            pass
-        # right heavy
+
         if balance_facto > 1:
-            if data > root.right.data:
+            if data > root.left.data:
                 return AVLTree.rotateLeftChild(root)
             else:
                 if root.right is not None:
                     root.right = AVLTree.rotateRightChild(root.right)
                 return AVLTree.rotateLeftChild(root)
-            pass
         return root
         # code here
 
     def rotateLeftChild(root):
-        if root is None or root.right is None:
-            return root
         y = root.right
         T2 = y.left
 
         y.left = root
         root.right = T2
-
-        root.setHeight()
-        y.setHeight()
-        # before:
-        #  root
-        #    \
-        #     y
-        #    / \
-        #  T2   R
-        # after:
-        #     y
-        #    / \
-        # root   R
-        #    \
-        #     T2
         return y
         pass
         # code here
 
     def rotateRightChild(root):
-        if root is None or root.left is None:
-            return root
         y = root.left
         T3 = y.right
-
         y.right = root
         root.left = T3
-
-        root.setHeight()
-        y.setHeight()
-        # before:
-        #    root
-        #    /
-        #   y
-        #  / \
-        # L   T3
-        # after:
-        #     y
-        #    / \
-        #   L   root
-        #        /
-        #      T3
         return y
         pass
         # code here
