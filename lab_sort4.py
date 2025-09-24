@@ -7,7 +7,7 @@ def get_char(s):
 
 def bubble_sort(arr):
     
-    n = len(arr)
+    n = len(arr)   
     for i in range(n):
         for j in range(0, n-i-1):
             if get_char(arr[j]) > get_char(arr[j+1]):
