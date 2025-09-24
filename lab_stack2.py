@@ -37,13 +37,13 @@ class Stack:
 def find_plate_all(target_item, list_plates_available, max_plate):
     each_side_stack = Stack()
     sorted_plates = sorted(list_plates_available, reverse=True)
-    remaining = target_item
+    remaining = target_item #how much we need left
 
     for plate in sorted_plates:
 
         while remaining >= plate and each_side_stack.size() < max_plate:
             each_side_stack.push(plate)
-            remaining -= plate
+            remaining -= plate 
         if remaining == 0:
             break
 
@@ -103,17 +103,17 @@ for weight in weight_1:
 
    
     while old and new and old[0] == new[0]:
-        # both stacks match at top = skip
+        #if both same = pop = that plate stays
         old.pop(0)
         new.pop(0)
 
     #remove all old plates if there left
     while old:
-        po.push(old.pop(0))  # remove in order (outermost first)
+        po.push(old.pop(0))  
 
     #add remaining new plates
     while new:
-        pu.push(new.pop(0))  # add in order (outermost first)
+        pu.push(new.pop(0))  
     # pu = Stack()
     # po = Stack()
 
