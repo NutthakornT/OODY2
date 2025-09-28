@@ -47,7 +47,7 @@ class BST:
             self.printTree(node.left, level + 1)
 
 
-def find_sum(node):
+def find_sum(node):  # sum every node
     if node is None:
         return 0
     return node.data + find_sum(node.left) + find_sum(node.right)
@@ -56,7 +56,7 @@ def find_sum(node):
 def update_tree(node, num):
     if node:
         if node.data > num:
-            node.data *= num
+            node.data *= num  # multiply
         update_tree(node.left, num)
         update_tree(node.right, num)
 

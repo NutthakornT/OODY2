@@ -14,7 +14,7 @@ class BST:
 
     def insert(self, data):
         self.root = BST._add(self.root, data)
-        self.sum_till_leaf_list = []
+        self.sum_till_leaf_list = []  # store all path
         self.sum_till_leaf(None, [])
         return self.root
 
@@ -99,7 +99,7 @@ for cond in conditions:
     i = 0
     while i < len(T.sum_till_leaf_list):
         path = T.sum_till_leaf_list[i]
-        total = find_sum_list(path) #sum of a path
+        total = find_sum_list(path)  # sum of a path
 
         remove = False
         if condition == "L" and total < value:

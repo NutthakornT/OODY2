@@ -93,13 +93,13 @@ for i in inp:
 inorder = []
 in_order(root, inorder)
 print(f"Inorder Traversal of BST :", *inorder)
-path_allah = find_path_sum(root, target)
+path_allah = find_path_sum(root, target)  # find path
 check = 0
 for i in path_allah:
-    if check == 1:
+    if check == 1:  # quit if found
         break
     else:
-        if sum(i) == target:
+        if sum(i) == target:  # found
             print(f"Path with sum {target} exists : True")
             check = 1
         else:
