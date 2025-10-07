@@ -27,7 +27,7 @@ class AVLTree:
             return self.height
 
         def getHeight(self, node):
-            
+
             return -1 if node == None else node.height
 
         def balanceValue(self):
