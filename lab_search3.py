@@ -57,7 +57,7 @@ class hash:
         print("---------------------------")
     # Code Here
 
-
+#Input : 3 2/1+1 I,OnE Love,abcde I,#$ew2 KMITL,kk KMITL,z Love
 print(" ***** Fun with hashing *****")
 inp = input("Enter Input : ")
 sizemax,data = inp.split("/")

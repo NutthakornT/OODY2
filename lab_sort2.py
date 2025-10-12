@@ -1,17 +1,17 @@
 def find_index_max(arr,start_index,end_index,current_index_max=None,i=None):
     if i is None:
-        i = start_index
+        i = start_index #0
         current_index_max = start_index
     if i > end_index:
-        return current_index_max
+        return current_index_max # found
     if arr[i] > arr[current_index_max]: #find max
         current_index_max = i
     
     return find_index_max(arr,start_index,end_index,current_index_max,i+1)
 def selection_sort(arr,end_index=None):
-    if end_index is None:
+    if end_index is None: #set up end index
         end_index = len(arr)-1
-    if end_index <=0:
+    if end_index <=0: 
         print(arr)
         return
     

@@ -60,7 +60,7 @@ def selection_sort(arr, sort_by, end_index=None):
         if sort_by == "symbol":  # swap chack if symbol
             for i in range(len(arr) - 2):
                 if arr[i][0] == arr[i + 1][0]:
-                    if arr[i][1].isdigit() and arr[i + 1][1].isdigit():
+                    if arr[i][1].isdigit() and arr[i + 1][1].isdigit():#digit & digit
                         if int(arr[i][1]) > int(arr[i + 1][1]):
                             arr[i], arr[i + 1] = arr[i + 1], arr[i]
                         # print(f"Sorted cards : {" ".join(arr)}")
@@ -69,7 +69,7 @@ def selection_sort(arr, sort_by, end_index=None):
                             print(i, end=" ")
                         return
                         pass
-                    elif arr[i][1].isalpha() and arr[i + 1][1].isdigit():
+                    elif arr[i][1].isalpha() and arr[i + 1][1].isdigit():#alpha & digit
                         if ord(arr[i][1]) > int(arr[i + 1][1]):
                             arr[i], arr[i + 1] = arr[i + 1], arr[i]
                         # print(f"Sorted cards : {" ".join(arr)}")
@@ -78,7 +78,7 @@ def selection_sort(arr, sort_by, end_index=None):
                             print(i, end=" ")
                         return
                         pass
-                    elif arr[i][1].isdigit() and arr[i + 1][1].isalpha():
+                    elif arr[i][1].isdigit() and arr[i + 1][1].isalpha(): #digit & alpha
                         if int(arr[i][1]) > ord(arr[i + 1][1]):
                             arr[i], arr[i + 1] = arr[i + 1], arr[i]
                         # print(f"Sorted cards : {" ".join(arr)}")
@@ -87,7 +87,7 @@ def selection_sort(arr, sort_by, end_index=None):
                             print(i, end=" ")
                         return
                         pass
-                    elif arr[i][1].isalpha() and arr[i + 1][1].isalpha():
+                    elif arr[i][1].isalpha() and arr[i + 1][1].isalpha(): #alpha & alpha
                         if ord(arr[i][1]) > ord(arr[i + 1][1]):
                             arr[i], arr[i + 1] = arr[i + 1], arr[i]
                         # print(f"Sorted cards : {" ".join(arr)}")
