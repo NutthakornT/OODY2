@@ -1,0 +1,9 @@
+{
+    "codesnap.backgroundColor": "",
+    "codesnap.shutterAction": "copy",
+    "codesnap.transparentBackground": true,
+    "codesnap.target": "container",
+    "codesnap.boxShadow": "rgba(0, 0, 0, 0.55) 0px 3px 8px",
+    "codesnap.containerPadding": "3em",
+    "codesnap.showWindowControls": true
+}
