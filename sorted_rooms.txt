@@ -1,0 +1,189 @@
+=== รายชื่อห้องทั้งหมด (เรียงลำดับแล้ว - Quick Sort) ===
+room#2097152	R12_P11 Old_man
+room#6291456	R0_P1 Old_man
+room#10485760	R5_P2 Old_man
+room#14680064	R6_P4 Old_man
+room#18874368	R10_P9 Old_man
+room#23068672	R10_P30 Old_man
+room#27262976	R11_P21 Old_man
+room#31457280	R1_P1 Old_man
+room#35651584	R4_P4 Old_man
+room#39845888	R8_P3 Old_man
+room#44040192	R10_P10 Old_man
+room#48234496	R11_P1 Old_man
+room#52428800	R12_P12 Old_man
+room#56623104	R11_P22 Old_man
+room#60817408	R2_P1 Old_man
+room#65011712	R7_P1 Old_man
+room#69206016	R8_P6 Old_man
+room#73400320	R10_P11 Old_man
+room#77594624	R11_P2 Old_man
+room#81788928	R12_P13 Old_man
+room#85983232	R11_P23 Old_man
+room#90177536	R1_P2 Old_man
+room#94371840	R7_P4 Old_man
+room#98566144	R8_P9 Old_man
+room#102760448	R10_P12 Old_man
+room#106954752	R11_P3 Old_man
+room#111149056	R12_P14 Old_man
+room#115343360	R11_P24 Old_man
+room#119537664	R3_P1 Old_man
+room#123731968	R7_P7 Old_man
+room#127926272	R9_P1 Old_man
+room#132120576	R10_P13 Old_man
+room#136314880	R11_P4 Old_man
+room#140509184	R12_P15 Old_man
+room#144703488	R11_P25 Old_man
+room#148897792	R8_P5 Old_man
+room#153092096	R4_P5 Old_man
+room#157286400	R9_P4 Old_man
+room#161480704	R10_P14 Old_man
+room#165675008	R11_P5 Old_man
+room#169869312	R12_P16 Old_man
+room#174063616	R11_P26 Old_man
+room#178257920	R2_P2 Old_man
+room#182452224	R5_P3 Old_man
+room#186646528	R9_P7 Old_man
+room#190840832	R10_P15 Old_man
+room#195035136	R11_P6 Old_man
+room#199229440	R12_P17 Old_man
+room#203423744	R11_P27 Old_man
+room#207618048	R4_P1 Old_man
+room#211812352	R6_P2 Old_man
+room#216006656	R9_P10 Old_man
+room#220200960	R10_P16 Old_man
+room#224395264	R11_P7 Old_man
+room#228589568	R12_P18 Old_man
+room#232783872	R11_P28 Old_man
+room#236978176	R2_P3 Old_man
+room#241172480	R5_P4 Old_man
+room#245366784	R6_P5 Old_man
+room#249561088	R10_P17 Old_man
+room#253755392	R11_P8 Old_man
+room#257949696	R12_P19 Old_man
+room#262144000	R11_P29 Old_man
+room#266338304	R3_P2 Old_man
+room#270532608	R8_P1 Old_man
+room#274726912	R7_P3 Old_man
+room#278921216	R10_P18 Old_man
+room#283115520	R11_P9 Old_man
+room#287309824	R12_P20 Old_man
+room#291504128	R11_P30 Old_man
+room#295698432	R7_P6 Old_man
+room#299892736	R8_P4 Old_man
+room#304087040	R10_P19 Old_man
+room#308281344	R8_P8 Old_man
+room#312475648	R11_P10 Old_man
+room#316669952	R12_P21 Old_man
+room#320864256	R12_P1 Old_man
+room#325058560	R5_P1 Old_man
+room#329252864	R8_P7 Old_man
+room#333447168	R6_P6 Old_man
+room#337641472	R10_P20 Old_man
+room#341835776	R11_P11 Old_man
+room#346030080	R12_P22 Old_man
+room#350224384	R12_P2 Old_man
+room#354418688	R9_P2 Old_man
+room#358612992	R9_P3 Old_man
+room#362807296	R8_P2 Old_man
+room#367001600	R10_P21 Old_man
+room#371195904	R11_P12 Old_man
+room#375390208	R12_P23 Old_man
+room#379584512	R12_P3 Old_man
+room#383778816	R3_P3 Old_man
+room#387973120	R9_P6 Old_man
+room#392167424	R10_P1 Old_man
+room#396361728	R10_P22 Old_man
+room#400556032	R11_P13 Old_man
+room#404750336	R12_P24 Old_man
+room#408944640	R12_P4 Old_man
+room#413138944	R4_P2 Old_man
+room#417333248	R9_P9 Old_man
+room#421527552	R10_P2 Old_man
+room#425721856	R10_P23 Old_man
+room#429916160	R11_P14 Old_man
+room#434110464	R12_P25 Old_man
+room#438304768	R12_P5 Old_man
+room#442499072	R9_P5 Old_man
+room#446693376	R5_P5 Old_man
+room#450887680	R10_P3 Old_man
+room#455081984	R10_P24 Old_man
+room#459276288	R11_P15 Old_man
+room#463470592	R12_P26 Old_man
+room#467664896	R12_P6 Old_man
+room#471859200	R3_P4 Old_man
+room#476053504	R6_P3 Old_man
+room#480247808	R10_P4 Old_man
+room#484442112	R10_P25 Old_man
+room#488636416	R11_P16 Old_man
+room#492830720	R12_P27 Old_man
+room#497025024	R12_P7 Old_man
+room#501219328	R6_P1 Old_man
+room#505413632	R5_P6 Old_man
+room#509607936	R10_P5 Old_man
+room#513802240	R10_P26 Old_man
+room#517996544	R11_P17 Old_man
+room#522190848	R12_P28 Old_man
+room#526385152	R12_P8 Old_man
+room#530579456	R6_P7 Old_man
+room#534773760	R7_P5 Old_man
+room#538968064	R10_P6 Old_man
+room#543162368	R10_P27 Old_man
+room#547356672	R11_P18 Old_man
+room#551550976	R12_P29 Old_man
+room#555745280	R12_P9 Old_man
+room#559939584	R4_P3 Old_man
+room#564133888	R7_P8 Old_man
+room#568328192	R10_P7 Old_man
+room#572522496	R10_P28 Old_man
+room#576716800	R11_P19 Old_man
+room#580911104	R12_P30 Old_man
+room#585105408	R12_P10 Old_man
+room#589299712	R9_P8 Old_man
+room#593494016	R7_P2 Old_man
+room#597688320	R10_P8 Old_man
+room#601882624	R10_P29 Old_man
+room#606076928	R11_P20 Old_man
+room#610271232	R13_P1
+room#614465536	R13_P2
+room#618659840	R14_P1
+room#622854144	R14_P2
+room#627048448	R15_P1
+room#631242752	R15_P2
+room#635437056	R16_P1
+room#639631360	R16_P2
+room#643825664	R17_P1
+room#648019968	R17_P2
+room#652214272	R18_P1
+room#656408576	R18_P2
+room#660602880	R19_P1
+room#664797184	R19_P2
+room#668991488	R20_P1
+room#673185792	R20_P2
+room#677380096	R21_P1
+room#681574400	R21_P2
+room#685768704	R22_P1
+room#689963008	R22_P2
+room#694157312	R23_P1
+room#698351616	R23_P2
+room#702545920	R24_P1
+room#706740224	R24_P2
+room#710934528	R25_P1
+room#715128832	R25_P2
+room#719323136	R26_P1
+room#723517440	R26_P2
+room#727711744	R27_P1
+room#731906048	R27_P2
+room#736100352	R28_P1
+room#740294656	R28_P2
+room#744488960	R29_P1
+room#748683264	R29_P2
+room#752877568	R30_P1
+room#757071872	R30_P2
+room#761266176	R31_P1
+room#765460480	R31_P2
+room#769654784	R32_P1
+room#773849088	R32_P2
+
+รวมทั้งหมด 185 ห้อง
+runtime: 0.0001856000 วินาที

@@ -9,6 +9,7 @@ class Route:
     def __init__(self, route_no, amount):
         self.route_no = route_no
         self.amount = int(amount)
+
     def __str__(self):
         return f"ช่องทาง {self.route_no} : แขก {self.amount} คน"
 
@@ -17,6 +18,7 @@ class Room:
     def __init__(self, room, value):
         self.room = int(room)
         self.value = value
+
     def __str__(self):
         return f"(ห้องที่ {self.room+1}, หมายเลขลำดับ {self.value})"
 
@@ -32,9 +34,11 @@ class Hash:
         self.MaxCollision = 10
         self.Threshold = 70
 
-    
+    def hashing_function(self, key, probe):
+        return (int(key) + probe**2) % len(self.table)
 
     def insert(self, data):
+        """Insert safely with rehash if full"""
         if (self.size + 1) / len(self.table) * 100 > self.Threshold:
             self.rehash()
 
@@ -52,19 +56,18 @@ class Hash:
         # ถ้าชนเกิน max
         self.rehash()
         return self.insert(data)
-    
-    def hashing_function(self, key, probe):
-        return (int(key) + probe ** 2) % len(self.table)
 
     def rehash(self):
+        """ขยายตารางเป็น 2 เท่า"""
         old_items = [x for x in self.table if x is not None]
         new_len = max(len(self.table) * 2, 2)
         self.table = np.full(new_len, None, dtype=object)
-        self.size = 0   
+        self.size = 0
         for item in sorted(old_items, key=lambda x: x.room):
             self.insert(item)
 
     def search(self, key):
+        """ค้นหา key"""
         for i in range(self.MaxCollision):
             index = self.hashing_function(key, i)
             item = self.table[index]
@@ -73,6 +76,7 @@ class Hash:
         return None
 
     def delete(self, key):
+        """ลบแบบไม่พัง chain"""
         for i in range(self.MaxCollision):
             index = self.hashing_function(key, i)
             item = self.table[index]
@@ -86,7 +90,9 @@ class Hash:
 
     def __str__(self):
         lines = []
-        for data in sorted([x for x in self.table if x is not None], key=lambda x: x.room):
+        for data in sorted(
+            [x for x in self.table if x is not None], key=lambda x: x.room
+        ):
             lines.append(f"room#{data.room+1}\t{data.value}")
         return "\n".join(lines)
 
@@ -95,7 +101,9 @@ def print_file(hash_table):
     with open("hashtable_output.txt", "w", encoding="utf-8") as f:
         f.write(" ***** Hotel *****\n")
         f.write("----------------------------------------\n")
-        for data in sorted((x for x in hash_table.table if x is not None), key=lambda x: x.room):
+        for data in sorted(
+            (x for x in hash_table.table if x is not None), key=lambda x: x.room
+        ):
             f.write(f"room#{data.room+1}\t{data.value}\n")
         f.write("----------------------------------------\n")
         f.write(f"Total Rooms: {hash_table.size}\n")
@@ -103,23 +111,25 @@ def print_file(hash_table):
     print("\n✅ ผลลัพธ์ถูกบันทึกลงไฟล์ชื่อ hashtable_output.txt แล้ว")
 
 
-
 def show_memory_usage():
     process = psutil.Process(os.getpid())
     mem_info = process.memory_info()
-    print(f"[Memory] RSS: {mem_info.rss / (1024 ** 2):.2f} MB | VMS: {mem_info.vms / (1024 ** 2):.2f} MB")
+    print(
+        f"[Memory] RSS: {mem_info.rss / (1024 ** 2):.2f} MB | VMS: {mem_info.vms / (1024 ** 2):.2f} MB"
+    )
 
 
 # ---------------------- เริ่มโปรแกรม ----------------------
 
 route_list = []
-routes_data = []
 manual_rooms = []
 force_add = 1
 flag = True
 
 routes = input("ใส่หมายเลขช่องทาง (เช่น 1 2 3): ").split()
-amounts = list(map(int, input(f"ใส่จำนวนแขกที่มาในช่องทาง {routes} ตามลำดับ (เช่น 10 5 8): ").split()))
+amounts = list(
+    map(int, input(f"ใส่จำนวนแขกที่มาในช่องทาง {routes} ตามลำดับ (เช่น 10 5 8): ").split())
+)
 
 if len(routes) != len(amounts):
     print("⚠️ จำนวนช่องทางและจำนวนแขกไม่ตรงกัน")
@@ -137,10 +147,9 @@ if flag:
     room_no = 0
     Hotel = Hash(all_new_guest_amount)
     for i in range(len(routes)):
-        routes_data.append(Route(routes[i], amounts[i]))
-        route_list.append(routes[i])
+        route_list.append(i)
         for j in range(amounts[i]):
-            Hotel.insert(Room(room_no, f"R{routes[i]}_P{j+1}"))
+            Hotel.insert(Room(room_no, f"R{i}_P{j+1}"))
             room_no += 1
     end = time.perf_counter()
     print(f"runtime : {(end-start):.20f}")
@@ -181,29 +190,24 @@ while True:
         start = time.perf_counter()
 
         # เก็บห้องเดิมทั้งหมด
-        all_items = sorted([x for x in Hotel.table if x is not None], key=lambda x: x.room)
+        all_items = sorted(
+            [x for x in Hotel.table if x is not None], key=lambda x: x.room
+        )
         new_rooms = []
 
         # สร้างห้องใหม่สำหรับแต่ละ route
-        for i in range(len(routes)):
-            route = routes[i]
-            amount = amounts[i]
-
-            # หาหมายเลขแขกสุดท้ายของ route นั้น (ถ้ามี)
-            last_no = max(
-                [int(r.value.split("_P")[1]) for r in all_items if r.value.startswith(f"R{route}_")],
-                default=0
-            )
+        print(len(route_list))
+        for i in range(len(route_list) + 1, len(routes) + len(route_list) + 1):
+            amount = amounts[i - len(route_list)]
 
             for j in range(amount):
-                new_rooms.append(Room(j, f"R{route}_P{last_no + j + 1}"))
+                new_rooms.append(Room(j, f"R{i}_P{j + 1}"))
 
-            routes_data.append(Route(route, amount))
-            route_list.append(route)
+            route_list.append(i)
 
         # รวมข้อมูลใหม่ไว้หน้าสุด แล้วลดขนาด Hash Table ให้พอดี
         combined = new_rooms + all_items
-        new_size = max(len(combined) * 2, 2)
+        new_size = len(combined) * 2
         Hotel.table = np.full(new_size, None, dtype=object)
         Hotel.size = 0
 
@@ -214,26 +218,28 @@ while True:
         end = time.perf_counter()
         print(f"✅ เพิ่มช่องทางใหม่เรียบร้อย runtime : {(end-start):.20f}")
 
-
-
     elif choice == 2:
         try:
             key = int(input("ใส่หมายเลขห้องที่ต้องการเพิ่ม: "))
         except ValueError:
             print("Invalid Input")
             continue
+
         if key <= 0:
             print("Invalid Input")
             continue
+
         start = time.perf_counter()
+
         # ตรวจว่าห้องมีอยู่แล้วหรือไม่
         if Hotel.search(key - 1):
-            print(f"⚠️ ห้อง {key} มีอยู่แล้ว → ดันห้องหลังจากนี้ทั้งหมด +1")
-            all_items = sorted([x for x in Hotel.table if x is not None], key=lambda x: x.room)
-            for item in reversed(all_items):
-                if item.room >= key - 1:
-                    item.room += 1
-            Hotel.rehash()
+            print(f"⚠️ ห้อง {key} มีอยู่แล้ว")
+            # all_items = sorted([x for x in Hotel.table if x is not None], key=lambda x: x.room)
+            # for item in reversed(all_items):
+            #     if item.room >= key - 1:
+            #         item.room += 1
+            # Hotel.rehash()
+            continue
 
         # เพิ่มห้องใหม่
         new_room = Room(key - 1, f"force add room no : {force_add}")
@@ -246,16 +252,12 @@ while True:
         print(f"✅ เพิ่มห้อง {key} สำเร็จแล้ว")
         print(f"runtime : {(end-start):.10f}")
 
-
-
-
     elif choice == 3:
         key = int(input("ใส่หมายเลขห้องที่ต้องการลบ: "))
         start = time.perf_counter()
         Hotel.delete(key - 1)
         end = time.perf_counter()
         print(f"runtime : {(end-start):.20f}")
-
 
     elif choice == 4:
         print("\n=== จัดเรียงหมายเลขห้อง ===")
